@@ -5,7 +5,9 @@ const Movies = lazy(() => import('../page/movies/Movies'));
 const Reviews = lazy(() => import('./review/Reviews'));
 const Cast = lazy(() => import('./cast/Cast'));
 const SharedLayout = lazy(() => import('./sharedLayout/SharedLayout'));
-const MoviesDetails = lazy(() => import('../page/MoviesDetails/MoviesDetails'));
+const MoviesDetails = lazy(() =>
+  import('../page/MoviesDetails/MoviesDetails.jsx')
+);
 
 export const App = () => {
   return (
