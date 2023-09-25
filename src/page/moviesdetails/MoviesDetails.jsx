@@ -24,9 +24,9 @@ const MoviesDetails = () => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const dataDetails = await fetchFromTMDbAPI(`${URL}${id}`);
-        if (dataDetails) {
-          setDataMovie(dataDetails);
+        const res = await fetchFromTMDbAPI(`${URL}${id}`);
+        if (res) {
+          setDataMovie(res);
         }
       } catch (error) {
         console.error(error);
