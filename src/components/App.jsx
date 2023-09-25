@@ -1,13 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-// import MoviesDetails from 'page/MoviesDetails/MoviesDetails';
 const Home = lazy(() => import('../page/home/Home'));
 const Movies = lazy(() => import('../page/movies/Movies'));
 const Reviews = lazy(() => import('./review/Reviews'));
 const Cast = lazy(() => import('./cast/Cast'));
 const SharedLayout = lazy(() => import('./sharedLayout/SharedLayout'));
-// const MoviesDetails = lazy(() => import('../page/MoviesDetails/MoviesDetails'));
-const Test = lazy(() => import('../page/Test/Test'));
+const MovieDetails = lazy(() => import('../page/MovieDetails/MovieDetails'));
 
 export const App = () => {
   return (
@@ -15,7 +13,7 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:id" element={<Test />}>
+        <Route path="/movies/:id" element={<MovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>

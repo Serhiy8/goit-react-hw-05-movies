@@ -9,11 +9,11 @@ import {
   ListDetails,
   LinkStyled,
   ListStats,
-} from './MoviesDetailsStyle.styled';
+} from './MovieDetails.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
-const MoviesDetails = () => {
+const MovieDetails = () => {
   const [dataMovie, setDataMovie] = useState(null);
   const { id } = useParams();
   const location = useLocation();
@@ -100,4 +100,4 @@ const MoviesDetails = () => {
   );
 };
 
-export default MoviesDetails;
+export default MovieDetails;
