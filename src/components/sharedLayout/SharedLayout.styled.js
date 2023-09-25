@@ -12,6 +12,7 @@ const List = styled('ul')(() => {
     display: 'flex',
     gap: 20,
     fontSize: 20,
+    listStyle: 'none',
     padding: '14px 14px',
   };
 });

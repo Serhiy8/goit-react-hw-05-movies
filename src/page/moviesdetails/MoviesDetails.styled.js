@@ -21,20 +21,32 @@ const SpanStyled = styled('span')(() => {
   };
 });
 
+const ListStats = styled('ul')(() => {
+  return {
+    listStyle: 'none',
+  };
+});
+
 const ListDetails = styled('ul')(() => {
   return {
-    listStyle: 'inside',
     margin: '20px 0',
   };
 });
 
 const LinkStyled = styled(NavLink)(() => {
   return {
-    color: 'black',
+    color: 'blue',
     '&.active': {
       color: 'red',
     },
   };
 });
 
-export { Container, ThumbStats, SpanStyled, ListDetails, LinkStyled };
+export {
+  Container,
+  ThumbStats,
+  SpanStyled,
+  ListDetails,
+  LinkStyled,
+  ListStats,
+};

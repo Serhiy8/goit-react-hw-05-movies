@@ -1,14 +1,13 @@
-// API key 41a9bd102e179fa30264e53fd1d70534
 import axios from 'axios';
 
-const URL = 'https://api.themoviedb.org/3/movie/';
 const API_KEY = '41a9bd102e179fa30264e53fd1d70534';
 
-const moviesDetailsAPI = async id => {
+export const fetchFromTMDbAPI = async (endpoint, queryParams) => {
   try {
-    const response = await axios.get(`${URL}${id}`, {
+    const response = await axios.get(endpoint, {
       params: {
         api_key: API_KEY,
+        ...queryParams,
       },
     });
 
@@ -21,5 +20,3 @@ const moviesDetailsAPI = async id => {
     console.error('Error:', error);
   }
 };
-
-export default moviesDetailsAPI;

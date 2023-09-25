@@ -1,6 +1,6 @@
-import moviesDetailsAPI from './moviesDetailsAPI';
 import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { fetchFromTMDbAPI } from 'API';
+import { useState, useEffect, Suspense } from 'react';
 import BackLink from 'components/backLink/BackLink';
 import {
   Container,
@@ -8,7 +8,10 @@ import {
   SpanStyled,
   ListDetails,
   LinkStyled,
+  ListStats,
 } from './MoviesDetails.styled';
+
+const URL = 'https://api.themoviedb.org/3/movie/';
 
 const MoviesDetails = () => {
   const [dataMovie, setDataMovie] = useState(null);
@@ -20,8 +23,14 @@ const MoviesDetails = () => {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const dataDetails = await moviesDetailsAPI(id);
-      setDataMovie(dataDetails);
+      try {
+        const dataDetails = await fetchFromTMDbAPI(`${URL}${id}`);
+        if (dataDetails) {
+          setDataMovie(dataDetails);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchDetails();
   }, [id]);
@@ -36,7 +45,7 @@ const MoviesDetails = () => {
         Back to movies
       </BackLink>
       <div>
-        {dataMovie ? (
+        {dataMovie && (
           <div>
             <Container>
               <img
@@ -45,7 +54,7 @@ const MoviesDetails = () => {
               />
               <ThumbStats>
                 <h2>{dataMovie.title}</h2>
-                <ul>
+                <ListStats>
                   <li>
                     <p>
                       User score: {`${Math.ceil(dataMovie.vote_average * 10)}%`}
@@ -65,7 +74,7 @@ const MoviesDetails = () => {
                       {dataMovie.genres.map(el => el.name).join(' ')}
                     </p>
                   </li>
-                </ul>
+                </ListStats>
               </ThumbStats>
             </Container>
             <ListDetails>
@@ -80,10 +89,11 @@ const MoviesDetails = () => {
                 </LinkStyled>
               </li>
             </ListDetails>
-            <Outlet />
+
+            <Suspense fallback={<div>Loading...</div>}>
+              <Outlet />
+            </Suspense>
           </div>
-        ) : (
-          <p>Loading...</p>
         )}
       </div>
     </main>

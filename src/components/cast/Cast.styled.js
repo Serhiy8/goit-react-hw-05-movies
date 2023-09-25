@@ -1,4 +1,4 @@
-const { default: styled } = require('styled-components');
+import styled from 'styled-components';
 
 const ThumbImage = styled('div')(() => {
   return {
@@ -9,4 +9,10 @@ const ThumbImage = styled('div')(() => {
   };
 });
 
-export { ThumbImage };
+const CastList = styled('ul')(() => {
+  return {
+    listStyle: 'none',
+  };
+});
+
+export { ThumbImage, CastList };

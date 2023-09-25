@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import MoviesList from 'components/moviesList/MoviesList';
 import { useSearchParams } from 'react-router-dom';
-import fetchByMovieIPA from './byMovieAPI';
+import { fetchFromTMDbAPI } from 'API';
+import { ThumbForm, FormSearch, FormInput, FormButton } from './Movies.styled';
+
+const URL = 'https://api.themoviedb.org/3/search/movie';
 
 const Movies = () => {
   const [inputValue, setInputValue] = useState('');
@@ -32,28 +35,30 @@ const Movies = () => {
 
   const searchMovies = async query => {
     try {
-      const res = await fetchByMovieIPA(query);
-      setDataMovies(res.results);
+      const res = await fetchFromTMDbAPI(URL, { query });
+      if (res) {
+        setDataMovies(res.results);
+      }
     } catch (error) {
-      console.error('Помилка під час пошуку фільмів:', error);
+      console.error('An error occurred while searching for movies:', error);
     }
   };
 
   return (
-    <div>
-      <form>
-        <input
+    <ThumbForm>
+      <FormSearch>
+        <FormInput
           type="text"
           placeholder="Search"
           value={inputValue}
           onChange={handleInputChange}
         />
-        <button type="button" onClick={handleSearchClick}>
+        <FormButton type="button" onClick={handleSearchClick}>
           Search
-        </button>
-      </form>
+        </FormButton>
+      </FormSearch>
       <MoviesList dataMovies={dataMovies} />
-    </div>
+    </ThumbForm>
   );
 };
 
