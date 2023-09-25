@@ -9,7 +9,7 @@ import {
   ListDetails,
   LinkStyled,
   ListStats,
-} from './MoviesDetails.styled';
+} from './MoviesDetailsStyle.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
