@@ -16,6 +16,7 @@ const Movies = () => {
     if (query) {
       setInputValue(query);
       searchMovies(query);
+      setInputValue('');
     }
   }, [query]);
 
@@ -23,7 +24,8 @@ const Movies = () => {
     setInputValue(e.target.value);
   };
 
-  const handleSearchClick = () => {
+  const handleSearchClick = e => {
+    e.preventDefault();
     if (!inputValue) {
       setSearchParams({});
       setDataMovies([]);
@@ -46,16 +48,14 @@ const Movies = () => {
 
   return (
     <ThumbForm>
-      <FormSearch>
+      <FormSearch onSubmit={handleSearchClick}>
         <FormInput
           type="text"
           placeholder="Search"
           value={inputValue}
           onChange={handleInputChange}
         />
-        <FormButton type="button" onClick={handleSearchClick}>
-          Search
-        </FormButton>
+        <FormButton type="submit">Search</FormButton>
       </FormSearch>
       <MoviesList dataMovies={dataMovies} />
     </ThumbForm>
