@@ -1,7 +1,7 @@
 import { fetchFromTMDbAPI } from 'API';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ThumbImage } from './cast.styled';
+import { ThumbImage } from './castStyle.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
