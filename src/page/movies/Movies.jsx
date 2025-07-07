@@ -53,13 +53,13 @@ const Movies = () => {
 
   return (
     <div className='container'>
-    <MoviesLayout
-      inputValue={inputValue}
-      movies={dataMovies}
-      notFound={notFound}
-      onChange={handleInputChange}
-      onSubmit={handleSearchClick}
-    />
+      <MoviesLayout
+        inputValue={inputValue}
+        movies={dataMovies}
+        notFound={notFound}
+        onChange={handleInputChange}
+        onSubmit={handleSearchClick}
+      />
     </div>
   );
 };
