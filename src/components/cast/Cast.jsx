@@ -1,7 +1,7 @@
 import { fetchFromTMDbAPI } from 'API';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ThumbImage, CastList } from './Cast.styled';
+import { ThumbImage } from './cast.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
@@ -25,7 +25,7 @@ const Cast = () => {
       {!cast ? (
         <div>Loading...</div>
       ) : (
-        <CastList>
+        <ul>
           {cast.slice(0, 7).map(el => {
             return (
               <li key={el.id}>
@@ -43,7 +43,7 @@ const Cast = () => {
               </li>
             );
           })}
-        </CastList>
+        </ul>
       )}
     </div>
   );

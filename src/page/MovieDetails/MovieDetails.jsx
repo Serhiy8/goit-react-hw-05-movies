@@ -1,15 +1,8 @@
-import { useParams, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { fetchFromTMDbAPI } from 'API';
-import { useState, useEffect, Suspense } from 'react';
-import BackLink from 'components/backLink/BackLink';
-import {
-  Container,
-  ThumbStats,
-  SpanStyled,
-  ListDetails,
-  LinkStyled,
-  ListStats,
-} from './MovieDetails.styled';
+import { useState, useEffect } from 'react';
+import MovieDetailsLayout from 'components/movieDetailsLayout/MovieDetailsLayout';
+
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
@@ -40,63 +33,9 @@ const MovieDetails = () => {
   };
 
   return (
-    <main>
-      <BackLink to={backLinkHref} onClick={handleBackClick}>
-        Back to movies
-      </BackLink>
-      <div>
-        {dataMovie && (
-          <div>
-            <Container>
-              <img
-                src={`https://image.tmdb.org/t/p/w200/${dataMovie.poster_path}`}
-                alt=""
-              />
-              <ThumbStats>
-                <h2>{dataMovie.title}</h2>
-                <ListStats>
-                  <li>
-                    <p>
-                      User score: {`${Math.ceil(dataMovie.vote_average * 10)}%`}
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <SpanStyled>Overview:</SpanStyled>
-                      <br />
-                      {dataMovie.overview}
-                    </p>
-                  </li>
-                  <li>
-                    <p>
-                      <SpanStyled>Genres:</SpanStyled>
-                      <br />
-                      {dataMovie.genres.map(el => el.name).join(' ')}
-                    </p>
-                  </li>
-                </ListStats>
-              </ThumbStats>
-            </Container>
-            <ListDetails>
-              <li>
-                <LinkStyled to="cast" state={location.state}>
-                  Cast
-                </LinkStyled>
-              </li>
-              <li>
-                <LinkStyled to="reviews" state={location.state}>
-                  Reviews
-                </LinkStyled>
-              </li>
-            </ListDetails>
-
-            <Suspense fallback={<div>Loading...</div>}>
-              <Outlet />
-            </Suspense>
-          </div>
-        )}
-      </div>
-    </main>
+    <div className='container'>
+      <MovieDetailsLayout backLinkHref={backLinkHref} handleBackClick={handleBackClick} dataMovie={dataMovie} location={location}/>
+    </div>
   );
 };
 

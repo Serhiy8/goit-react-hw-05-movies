@@ -1,7 +1,7 @@
 import { fetchFromTMDbAPI } from 'API';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ReviewsList, ReviewsListItem } from './Reviews.styled';
+import { ReviewsListItem, ReviewsList } from './reviews.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 

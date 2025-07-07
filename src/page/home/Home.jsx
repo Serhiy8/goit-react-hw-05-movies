@@ -1,8 +1,9 @@
 import { fetchFromTMDbAPI } from 'API';
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import TrendyToday from 'components/trendyToday/TrendyToday';
 
-const URL = 'https://api.themoviedb.org/3/trending/movie/week';
+const URL = 'https://api.themoviedb.org/3/trending/movie/day';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -14,6 +15,7 @@ const Home = () => {
       try {
         const res = await fetchFromTMDbAPI(URL, {});
         if (res) {
+          console.log(res.results)
           setData(res.results);
         }
 
@@ -27,28 +29,9 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      {loading ? (
-        <>
-          <h1>Trending today</h1>
-          {data ? (
-            <ul>
-              {data.map(el => (
-                <li key={el.id}>
-                  <NavLink to={`movies/${el.id}`} state={{ from: location }}>
-                    {el.title}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div>Something went wrong. Try to reload.</div>
-          )}
-        </>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </>
+    <div className='container'>
+      <TrendyToday loading={loading} data={data} location={location}/>      
+    </div>
   );
 };
 

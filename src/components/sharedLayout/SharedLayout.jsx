@@ -3,14 +3,14 @@ import { Suspense } from 'react';
 import {
   List,
   StyledLink,
-  HeaderStyled,
-  Container,
+  HeaderStyled
 } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
-    <Container>
+    <>
       <HeaderStyled>
+        <div className='container'>
         <nav>
           <div>
             <List>
@@ -23,11 +23,12 @@ const SharedLayout = () => {
             </List>
           </div>
         </nav>
+        </div>
       </HeaderStyled>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-    </Container>
+    </>
   );
 };
 

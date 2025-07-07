@@ -1,10 +1,7 @@
 import styled from 'styled-components';
 
-const ReviewsList = styled('ul')(() => {
-  return {
-    listStyle: 'none',
-  };
-});
+const ReviewsList = styled.ul`
+`
 
 const ReviewsListItem = styled('li')(() => {
   return {
@@ -12,4 +9,4 @@ const ReviewsListItem = styled('li')(() => {
   };
 });
 
-export { ReviewsList, ReviewsListItem };
+export { ReviewsListItem, ReviewsList };
