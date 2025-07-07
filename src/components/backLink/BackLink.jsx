@@ -1,5 +1,5 @@
 import { AiOutlineLeft } from 'react-icons/ai';
-import { StyledBackLink } from './backLink.styled';
+import { StyledBackLink } from './backLinkStyle.styled';
 
 const BackLink = ({ to, children }) => {
   return (
