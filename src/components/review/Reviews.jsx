@@ -1,7 +1,7 @@
 import { fetchFromTMDbAPI } from 'API';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ReviewsListItem, ReviewsList } from './reviewsStyle.styled';
+import { ReviewsListItem, ReviewsList, ReviewsTextAuthor } from './reviewsStyle.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
@@ -27,7 +27,7 @@ const Reviews = () => {
   }, [id]);
 
   return (
-    <div>
+    <>
       <ReviewsList>
         {reviews === null ? (
           <div>Loading...</div>
@@ -37,14 +37,14 @@ const Reviews = () => {
           reviews.map(el => {
             return (
               <ReviewsListItem key={el.id}>
-                <p>{el.author}</p>
+                <ReviewsTextAuthor>{el.author}</ReviewsTextAuthor>
                 <p>{el.content}</p>
               </ReviewsListItem>
             );
           })
         )}
       </ReviewsList>
-    </div>
+    </>
   );
 };
 

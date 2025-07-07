@@ -5,7 +5,7 @@ import BackLink from 'components/backLink/BackLink';
 
 const MovieDetailsLayout = ({backLinkHref, handleBackClick, dataMovie, location}) => {
     return(
-        <main>
+        <>
       <BackLink to={backLinkHref} onClick={handleBackClick}>
         Back to movies
       </BackLink>
@@ -61,7 +61,7 @@ const MovieDetailsLayout = ({backLinkHref, handleBackClick, dataMovie, location}
           </div>
         )}
       </div>
-    </main>
+    </>
     )
 }
 

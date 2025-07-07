@@ -9,8 +9,9 @@ import {
 const SharedLayout = () => {
   return (
     <>
+    
       <HeaderStyled>
-        <div className='container'>
+        <div className='container'>       
         <nav>
           <div>
             <List>
@@ -25,8 +26,11 @@ const SharedLayout = () => {
         </nav>
         </div>
       </HeaderStyled>
+      
       <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
       </Suspense>
     </>
   );

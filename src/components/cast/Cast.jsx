@@ -1,7 +1,7 @@
 import { fetchFromTMDbAPI } from 'API';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ThumbImage } from './castStyle.styled';
+import { ThumbImage, CastThumb, ListOfActors, ListOfActorsItems, ActorsName } from './castStyle.styled';
 
 const URL = 'https://api.themoviedb.org/3/movie/';
 
@@ -21,14 +21,14 @@ const Cast = () => {
   }, [id]);
 
   return (
-    <div>
+    <CastThumb>
       {!cast ? (
         <div>Loading...</div>
       ) : (
-        <ul>
+        <ListOfActors>
           {cast.slice(0, 7).map(el => {
             return (
-              <li key={el.id}>
+              <ListOfActorsItems key={el.id}>
                 {el.profile_path ? (
                   <img
                     src={`https://image.tmdb.org/t/p/w200/${el.profile_path}`}
@@ -38,14 +38,13 @@ const Cast = () => {
                 ) : (
                   <ThumbImage>No photos of {el.name}</ThumbImage>
                 )}
-                <p>{el.name}</p>
-                <p>{el.character}</p>
-              </li>
+                <ActorsName>{el.name} as {el.character}</ActorsName>
+              </ListOfActorsItems>
             );
           })}
-        </ul>
+        </ListOfActors>
       )}
-    </div>
+    </CastThumb>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import MoviesList from 'components/moviesList/MoviesList';
 import { useSearchParams } from 'react-router-dom';
 import { fetchFromTMDbAPI } from 'API';
-import { ThumbForm, FormSearch, FormInput, FormButton } from './Movies.styled';
+import MoviesLayout from 'components/moviesLayout/MoviesLayout';
+import { toast } from 'react-toastify';
 
 const URL = 'https://api.themoviedb.org/3/search/movie';
 
@@ -21,19 +21,20 @@ const Movies = () => {
     }
   }, [query]);
 
-  const handleInputChange = e => {
-    setInputValue(e.target.value);
+  const handleInputChange = ({target}) => {
+    setInputValue(target.value);
   };
 
   const handleSearchClick = e => {
     e.preventDefault();
-    if (!inputValue) {
-      setSearchParams({});
-      setDataMovies([]);
+    if (inputValue.trim() === '') {
+      toast.warning('Please enter you value.')
       return;
     }
-    setSearchParams({ query: inputValue });
-    searchMovies(inputValue);
+    if(inputValue.trim() !== ''){
+      setSearchParams({ query: inputValue });
+      searchMovies(inputValue);
+    }
   };
 
   const searchMovies = async query => {
@@ -51,22 +52,15 @@ const Movies = () => {
   };
 
   return (
-    <ThumbForm>
-      <FormSearch onSubmit={handleSearchClick}>
-        <FormInput
-          type="text"
-          placeholder="Search"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        <FormButton type="submit">Search</FormButton>
-      </FormSearch>
-      {notFound ? (
-        <div>Nothing was found for your request.</div>
-      ) : (
-        <MoviesList dataMovies={dataMovies} />
-      )}
-    </ThumbForm>
+    <div className='container'>
+    <MoviesLayout
+      inputValue={inputValue}
+      movies={dataMovies}
+      notFound={notFound}
+      onChange={handleInputChange}
+      onSubmit={handleSearchClick}
+    />
+    </div>
   );
 };
 

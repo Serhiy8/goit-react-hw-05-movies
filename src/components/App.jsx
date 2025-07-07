@@ -1,5 +1,6 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
+import { ToastContainer } from 'react-toastify';
 const Home = lazy(() => import('../page/home/Home'));
 const Movies = lazy(() => import('../page/movies/Movies'));
 const Reviews = lazy(() => import('./review/Reviews'));
@@ -9,6 +10,7 @@ const MovieDetails = lazy(() => import('../page/MovieDetails/MovieDetails'));
 
 export const App = () => {
   return (
+    <>
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
@@ -19,6 +21,9 @@ export const App = () => {
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
+      
     </Routes>
+    <ToastContainer autoClose={1500}/>
+    </>
   );
 };

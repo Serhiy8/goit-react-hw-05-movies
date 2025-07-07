@@ -15,7 +15,6 @@ const Home = () => {
       try {
         const res = await fetchFromTMDbAPI(URL, {});
         if (res) {
-          console.log(res.results)
           setData(res.results);
         }
 
